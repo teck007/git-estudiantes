@@ -246,7 +246,18 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  box-shadow: var(--shadow);
+  transition: border-color var(--t-base), box-shadow var(--t-base);
+}
+
+.form:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft), var(--shadow);
 }
 
 .field {
@@ -262,20 +273,24 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--text-dim);
+  transition: color var(--t-fast);
+}
+
+.field:focus-within label {
+  color: var(--accent);
 }
 
 .field input,
 .field textarea {
   width: 100%;
-  padding: var(--space-3) 0;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--border);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   color: var(--text);
   font-family: var(--font-body);
   font-size: var(--fs-md);
-  transition: border-color var(--t-fast);
-  border-radius: 0;
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
   resize: none;
 }
 
@@ -287,7 +302,9 @@
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .field .hint {
@@ -296,11 +313,12 @@
   color: var(--text-dim);
   letter-spacing: 0.05em;
   min-height: 0.9em;
+  transition: color var(--t-fast);
 }
 
 .field.is-error input,
 .field.is-error textarea {
-  border-bottom-color: #d04646;
+  border-color: #d04646;
 }
 
 .field.is-error .hint {
@@ -313,6 +331,7 @@
   justify-content: space-between;
   gap: var(--space-4);
   flex-wrap: wrap;
+  padding-top: var(--space-2);
 }
 
 .form-status {
@@ -324,6 +343,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  transition: color var(--t-fast);
 }
 
 .form-status.is-ok {
